@@ -26,7 +26,7 @@ script for i3blocks
 which uses rofi or zenity
 * [Uptime](https://github.com/mohabaks/dotfiles/blob/master/config/polybar/.config/polybar/uptime)
 
-#### [Windows ZSH theme] (https://github.com/juliavallina/windows-zsh-theme)
+Windows ZSH theme: https://github.com/juliavallina/windows-zsh-theme
 
 ----
 
