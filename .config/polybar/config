@@ -2,6 +2,7 @@
 ;
 ;   Check https://github.com/jaagr/polybar for more 
 ;   info on polybar and it's config
+;   Config for Windows XP rice https://github.com/ameyrk99/windows-xp-i3-rice (check it out for more)
 ;
 ;=====================================================
 
@@ -35,16 +36,13 @@ tray = #0E9AED
 width = 100%
 height = 32
 
-;Want the date module to move annoyingly? Set fixed-center to false...
-fixed-center = true
 bottom = true
 
 background = ${colors.bar-blue}
 foreground = ${colors.foreground}
 
 ;border-size = 4
-border-top-size = 4         ;didn't want any distance b/w two bars
-;border-bottom-size = 0      ;gapps inner in i3 config maintains the gap, so change keep that in mind when changing the i3 config gaps
+border-top-size = 4
 border-color = #00000000    ;transparent border
 
 ;padding-left = 2
@@ -63,7 +61,6 @@ font-4 = "Font Awesome 5 Brands Regular:style=Regular:size=9;1"
 font-5 = "Font Awesome 5 Free:pixelsize=9;1"
 font-6 = "Font Awesome 5 Free solid:pixelsize=9;1"
 font-7 = "Font Awesome 5 Brands:pixelsize=9;1"
-font-8 = "Microsoft Sans "
 
 modules-left = menu-apps uptime i3
 modules-center = 
@@ -72,7 +69,7 @@ modules-right = weather wlan bandwidth volume backlight battery date
 scroll-up = i3wm-wsnext
 scroll-down = i3wm-wsprev
 
-;oh yes...the tray where all the problems might occur. Check the wiki for polybar or questions by others if you get any trouble
+
 tray-position = right
 ;tray-padding = 1
 tray-transparent = false
@@ -190,14 +187,14 @@ label-foreground = ${colors.foreground}
 
 [module/spotify]
 ;The module is meant for i3blocks, and it can play next song, pause, or play previous on i3blocks. Yet to change it to work
-;for polybar...If you do before I do, please do share (with me)
+;for polybar...If you do before I do, please do share
 type=custom/script
 label=  %output%
 exec=python3 ~/.i3/scripts/spotify.py
 interval=5
 
 [module/weather]
-;Display Weather. Change 'arlington' to where you live (unless you live in arlington too...) for it to work
+;Display Weather. Change 'nashik' to where you live (unless you live in arlington too...) for it to work
 type=custom/script
 label=Nashik %output%
 exec= ~/.i3/scripts/weather.sh nashik
