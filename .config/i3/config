@@ -1,0 +1,270 @@
+###############################################################################
+#
+#  _ _____  __        ____  __    _     _ _____        ____                  
+# (_)___ /  \ \      / /  \/  |  | |   (_)___ /       / ___| __ _ _ __  ___  
+# | | |_ \   \ \ /\ / /| |\/| |  | |   | | |_ \ _____| |  _ / _` | '_ \/ __| 
+# | |___) |   \ V  V / | |  | |  | |   | |___) |_____| |_| | (_| | |_) \__ \ 
+# |_|____/     \_/\_/  |_|  |_|  | |   |_|____/       \____|\__,_| .__/|___/ 
+#                                |_|                             |_|         
+#
+###############################################################################
+
+######################################################################
+#
+# No Man's Sky Themed config for i3 gaps by Amey Khairnar
+# Check https://github.com/ameyrk99/no-mans-sky-rice-i3wm for all files and info
+#
+# Check https://i3wm.org/docs/userguide.html for a complete reference!
+#
+######################################################################
+
+#---------------------------------------------------------------------------------------------------
+#BASIC CONFIG AND STUFF...
+#---------------------------------------------------------------------------------------------------
+# Set modifier key to Windows key
+set $mod Mod4
+
+#set font
+font pango: Space Mono 10
+
+# Press mod key to be able to resize floating windows
+floating_modifier $mod
+
+# Open new terminal
+bindsym $mod+Return exec gnome-terminal
+
+#Close window
+bindsym $mod+Shift+q kill
+
+#---------------------------------------------------------------------------------------------------
+#CONTAINERS AND STUFF...
+#---------------------------------------------------------------------------------------------------
+# Change focus
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+semicolon focus right
+
+# Alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move focused window
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+semicolon move right
+
+# Alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Split in horizontal orientation
+bindsym $mod+h split h
+
+# Split in vertical orientatin
+bindsym $mod+v split v
+
+# Enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# Change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# Toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# Change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# Focus the parent container
+bindsym $mod+a focus parent
+
+#gaps
+gaps inner 5
+#gaps outer 5
+#smart_gaps on
+
+
+#---------------------------------------------------------------------------------------------------
+#WORKSPACES AND STUFF...
+#---------------------------------------------------------------------------------------------------
+# Set default names to workspaces 
+#Other
+set $ws1 " Mis"
+#Opera/Firefox
+set $ws2 " Browsers"
+#Files
+set $ws3 " Files"
+#Neovim
+set $ws4 " Code"
+#VLC 
+set $ws5 " Media"
+#Office
+set $ws6 " Office"
+#Pinta/Krita
+set $ws7 " Editors"
+#Steam/CS GO...
+set $ws8 " Steam"
+#Spotify
+set $ws9 " Spotify"
+#Mail
+set $ws10 " Mail"
+
+#settings for some applications
+#use xprop to get classes for the applications
+assign [class="Firefox|Opera"] $ws2
+assign [class="Nautilus"] $ws3
+assign [class="Code"] $ws4
+assign [class="vlc"] $ws5
+assign [class="Wps"] $ws6
+assign [class="Pinta|krita"] $ws7
+assign [class="Steam"] $ws8
+assign [class="Spotify"] $ws9
+assign [class="Mailspring"] $ws10
+
+#float some windows by default
+for_window [class="Gnome-terminal"] floating enable, move position center resize set 800 500
+#for_window [class="Nautilus"] floating enable
+for_window [class="SpeedCrunch"] floating enable, move position center resize set 400 450
+
+# Switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+# Move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+
+#---------------------------------------------------------------------------------------------------
+#SYSTEM STATUS AND STUFF...
+#---------------------------------------------------------------------------------------------------
+#lockscreen
+bindsym $mod+shift+x exec betterlockscreen --lock
+#Set image for lockscreen
+#where /lock contains wallpapers for lockscreen
+exec --no-startup-id betterlockscreen -u ~/.i3/lock
+# Reload the configuration file
+bindsym $mod+Shift+c reload
+# Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+#Suspend the system
+bindsym $mod+Shift+s exec betterlockscreen --lock & systemctl suspend
+# Exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# Resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        bindsym j resize shrink width 5 px or 5 ppt
+        bindsym l resize grow height 5 px or 5 ppt
+        bindsym semicolon resize shrink height 5 px or 5 ppt
+        bindsym k resize grow width 5 px or 5 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 5 px or 5 ppt
+        bindsym Down resize grow height 5 px or 5 ppt
+        bindsym Up resize shrink height 5 px or 5 ppt
+        bindsym Right resize grow width 5 px or 5 ppt
+
+        # back to normal mode: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+
+#---------------------------------------------------------------------------------------------------
+#BAR AND STUFF...
+#---------------------------------------------------------------------------------------------------
+#polybar
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
+
+#---------------------------------------------------------------------------------------------------
+#BORDER AND STUFF...
+#---------------------------------------------------------------------------------------------------
+new_window pixel 6
+
+#smart_borders on
+
+# Color variables
+set $unfocused_border #7F9FE6
+set $focused_border #0055EA
+
+# class                 border  backgr. text    indicator child_border
+client.focused          #ffffff #ffffff #ffffff #ffffff   $focused_border
+client.focused_inactive #ffffff #ffffff #ffffff #ffffff   $unfocused_border
+client.unfocused        #ffffff #ffffff #ffffff #ffffff   $unfocused_border
+client.urgent           #ffffff #ffffff #ffffff #ffffff   $focused_border
+client.placeholder      #ffffff #ffffff #ffffff #ffffff   #ffffff
+
+client.background       #ffffff
+
+#---------------------------------------------------------------------------------------------------
+#OTHER STUFF...
+#---------------------------------------------------------------------------------------------------
+
+# Set background
+exec_always --no-startup-id feh --bg-fill ~/.i3/windows_xp.jpg
+
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%   #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%   #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle         #mute sound
+
+#rofi
+bindsym Mod1+d exec rofi -location 7 -width 290 -lines 20 -yoffset -33 -show run -font "Space Mono 12" -show run
+bindsym $mod+d exec rofi -location 7 -width 290 -lines 20 -yoffset -33 -drun-icon-theme -show drun -show-icons -drun-icon-theme -font "Space Mono 12" -show run
+
+#dmenu 
+#bindsym $mod+d exec dmenu_run -fn 'Overpass Mono:pixelsize=15' -l 5 -nf '#707880' -sf '#52bbb7' -nb '#1d1f21' -sb '#1d1f21'
+
+#for smooth transitions
+exec --no-startup-id compton -f
+
+#startups
+exec_always --no-startup-id dunst
+exec_always --no-startup-id megasync
+exec_always --no-startup-id xfce4-power-manager
+exec_always --no-startup-id kdeconnect-indicator
+exec_always --no-startup-id pamac-tray-appindicator
+
+#powermenu
+bindsym Control+Mod1+Delete exec $HOME/.i3/scripts/shutdown_menu
+
+#application shorcuts
+bindsym $mod+Shift+f exec nautilus
+bindsym $mod+Shift+o exec opera
+bindsym $mod+Shift+b exec firefox
+bindsym $mod+Print exec spectacle
+
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg) &
+#---------------------------------------------------------------------------------------------------
+#...AND THAT'S ALL HE WROTE.
+#---------------------------------------------------------------------------------------------------
