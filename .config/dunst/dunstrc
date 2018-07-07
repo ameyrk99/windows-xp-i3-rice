@@ -3,6 +3,8 @@
 # Author: microfracture / https://linuxious.com
 # Updated: 2015-03-13
 
+#Just changed the colors for his ^ config for Windows XP rice (https://github.com/ameyrk99/windows-xp-i3-rice)
+
 
 [global]
     alignment = left
